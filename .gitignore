@@ -8,5 +8,11 @@ reports/
 node_modules
 npm-debug.log
 
-#VSCode
-./vscode/**
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history
+

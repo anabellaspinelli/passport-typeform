@@ -28,22 +28,22 @@ configure a callback URL which matches a route in your application.
 
 #### Configure Strategy
 
-The Typeform authentication strategy authenticates users using a GitHub account
+The Typeform authentication strategy authenticates users using a Typeform account
 and OAuth 2.0 tokens. The client ID and secret obtained when creating an
 application are supplied as options when creating the strategy. The strategy
 also requires a `verify` callback, which receives the access token and optional
 refresh token, as well as `profile` which contains the authenticated user's
-GitHub profile. The `verify` callback must call `cb` providing a user to
+Typeform profile. The `verify` callback must call `cb` providing a user to
 complete authentication.
 
 ```js
-var GitHubStrategy = require('passport-typeform').Strategy;
+var TypeformStrategy = require('passport-typeform').Strategy;
 
 passport.use(
   new TypeformStrategy(
     {
-      clientID: GITHUB_CLIENT_ID,
-      clientSecret: GITHUB_CLIENT_SECRET,
+      clientID: TYPEFORM_CLIENT_ID,
+      clientSecret: TYPEFORM_CLIENT_SECRET,
       callbackURL: 'http://localhost:3000/auth/typeform/callback'
     },
     function(accessToken, refreshToken, profile, cb) {
