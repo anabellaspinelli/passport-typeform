@@ -1,5 +1,5 @@
 {
-  "name": "typeform-github",
+  "name": "passport-typeform",
   "version": "0.0.1",
   "description": "Typeform authentication strategy for Passport.",
   "keywords": [
@@ -43,7 +43,6 @@
     "node": ">= 0.4.0"
   },
   "scripts": {
-    "test":
-      "node_modules/.bin/mocha --require test/bootstrap/node test/*.test.js"
+    "test": "node_modules/.bin/mocha --require test/bootstrap/node test/*.test.js"
   }
 }
