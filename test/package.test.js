@@ -2,7 +2,7 @@
 
 var strategy = require('..')
 
-describe('passport-github', function () {
+describe('passport-typeform', function () {
   it('should export Strategy constructor', function () {
     expect(strategy.Strategy).to.be.a('function')
   })
