@@ -30,6 +30,7 @@
   ],
   "main": "./lib",
   "dependencies": {
+    "npm": "^6.0.0",
     "passport-oauth2": "1.x.x"
   },
   "devDependencies": {

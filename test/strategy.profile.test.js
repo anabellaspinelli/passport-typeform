@@ -57,6 +57,42 @@ describe('Strategy#userProfile', function () {
     })
   }) // fetched from default endpoint
 
+  describe('not fetched due to missing scope', function () {
+    var strategy = new TypeformStrategy(
+      {
+        clientID: 'ABC123',
+        clientSecret: 'secret'
+      },
+      function () {}
+    )
+
+    strategy._oauth2.get = function (url, accessToken, callback) {
+      if (url != 'https://api.typeform.com/accounts/mine') {
+        return callback(new Error('wrong url argument'))
+      }
+      if (accessToken != 'token') {
+        return callback(new Error('wrong token argument'))
+      }
+      callback(null, body, undefined)
+    }
+
+    var profile
+
+    before(function (done) {
+      strategy.userProfile('token', function (err, p) {
+        if (err) {
+          return done(err)
+        }
+        profile = p
+        done()
+      })
+    })
+
+    it('should not fetch profile', function () {
+      expect(profile).to.be.empty
+    })
+  }) // not fetched due to missing scopes
+
   describe('error caused by invalid token', function () {
     var strategy = new TypeformStrategy(
       {
