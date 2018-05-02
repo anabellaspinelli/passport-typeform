@@ -18,10 +18,8 @@ describe('Profile.parse', function () {
     })
 
     it('should parse profile', function () {
-      expect(profile.alias).to.equal('beardyman')
       expect(profile.email).to.equal('beardy@typeform.com')
       expect(profile.language).to.equal('en')
-      expect(profile.plan).to.equal('ProPlus1')
     })
   })
 })

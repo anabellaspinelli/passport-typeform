@@ -15,7 +15,7 @@ describe('Strategy#userProfile', function () {
     )
 
     strategy._oauth2.get = function (url, accessToken, callback) {
-      if (url != 'https://api.typeform.com/accounts/mine') {
+      if (url != 'https://api.typeform.com/me') {
         return callback(new Error('wrong url argument'))
       }
       if (accessToken != 'token') {
@@ -42,10 +42,8 @@ describe('Strategy#userProfile', function () {
     it('should parse profile', function () {
       expect(profile.provider).to.equal('typeform')
 
-      expect(profile.alias).to.equal('beardyman')
       expect(profile.email).to.equal('beardy@typeform.com')
       expect(profile.language).to.equal('en')
-      expect(profile.plan).to.equal('ProPlus1')
     })
 
     it('should set raw property', function () {
@@ -67,7 +65,7 @@ describe('Strategy#userProfile', function () {
     )
 
     strategy._oauth2.get = function (url, accessToken, callback) {
-      if (url != 'https://api.typeform.com/accounts/mine') {
+      if (url != 'https://api.typeform.com/me') {
         return callback(new Error('wrong url argument'))
       }
       if (accessToken != 'token') {

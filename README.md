@@ -47,7 +47,7 @@ passport.use(
       callbackURL: 'http://localhost:3000/auth/typeform/callback'
     },
     function(accessToken, refreshToken, profile, cb) {
-      User.findOrCreate({ accountId: profile.id }, function(err, user) {
+      User.findOrCreate({ email: profile.email }, function(err, user) {
         return cb(err, user);
       });
     }
@@ -106,19 +106,6 @@ expected to maintain that level. Coverage reports can be viewed by executing:
 $ make test-cov
 $ make view-cov
 ```
-
-## Support
-
-#### Funding
-
-PassportJS is provided to you as open source, free of charge. The time and
-effort to develop and maintain this project is dedicated by [@jaredhanson](https://github.com/jaredhanson).
-If you (or your employer) benefit from this project, please consider a financial
-contribution. Your contribution helps continue the efforts that produce this
-and other open source software.
-
-Funds are accepted via [PayPal](https://paypal.me/jaredhanson), [Venmo](https://venmo.com/jaredhanson),
-and [other](http://jaredhanson.net/pay) methods. Any amount is appreciated.
 
 ## License
 
