@@ -4,7 +4,7 @@
 var TypeformStrategy = require('../lib/strategy')
 
 describe('Strategy#userProfile', function () {
-  describe.skip('fetched from default endpoint', function () {
+  describe('fetched from default endpoint', function () {
     var strategy = new TypeformStrategy(
       {
         clientID: 'ABC123',
@@ -23,7 +23,7 @@ describe('Strategy#userProfile', function () {
       }
 
       var body =
-        '{ "login": "beardyman", "id": 1, "name": "beardy man", "email": "beardy@typeform.com" }'
+        '{ "alias": "beardyman", "language": "en", "email": "beardy@typeform.com" }'
       callback(null, body, undefined)
     }
 
@@ -44,6 +44,7 @@ describe('Strategy#userProfile', function () {
 
       expect(profile.email).to.equal('beardy@typeform.com')
       expect(profile.language).to.equal('en')
+      expect(profile.alias).to.equal('beardyman')
     })
 
     it('should set raw property', function () {
@@ -54,42 +55,6 @@ describe('Strategy#userProfile', function () {
       expect(profile._json).to.be.an('object')
     })
   }) // fetched from default endpoint
-
-  describe('not fetched due to missing scope', function () {
-    var strategy = new TypeformStrategy(
-      {
-        clientID: 'ABC123',
-        clientSecret: 'secret'
-      },
-      function () {}
-    )
-
-    strategy._oauth2.get = function (url, accessToken, callback) {
-      if (url != 'https://api.typeform.com/me') {
-        return callback(new Error('wrong url argument'))
-      }
-      if (accessToken != 'token') {
-        return callback(new Error('wrong token argument'))
-      }
-      callback(null, body, undefined)
-    }
-
-    var profile
-
-    before(function (done) {
-      strategy.userProfile('token', function (err, p) {
-        if (err) {
-          return done(err)
-        }
-        profile = p
-        done()
-      })
-    })
-
-    it('should not fetch profile', function () {
-      expect(profile).to.be.empty
-    })
-  }) // not fetched due to missing scopes
 
   describe('error caused by invalid token', function () {
     var strategy = new TypeformStrategy(
