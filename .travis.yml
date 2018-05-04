@@ -13,3 +13,10 @@ after_success:
   - "make report-cov"
 
 sudo: false
+
+notifications:
+  email:
+    recipients:
+      - anabellaspinelli@gmail.com
+    on_success: change
+    on_failure: always
