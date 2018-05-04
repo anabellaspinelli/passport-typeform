@@ -1,4 +1,5 @@
 # passport-typeform
+[![Build Status](https://travis-ci.com/anabellaspinelli/passport-typeform.svg?branch=master)](https://travis-ci.com/anabellaspinelli/passport-typeform)
 
 [Passport](http://passportjs.org/) strategy for authenticating with [Typeform](https://www.typeform.com/)
 using the OAuth 2.0 API.
