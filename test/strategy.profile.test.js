@@ -9,9 +9,9 @@ describe('Strategy#userProfile', function () {
       {
         clientID: 'ABC123',
         clientSecret: 'secret',
-        scope: ['accounts:read']
+        scope: [ 'accounts:read' ]
       },
-      function () {}
+      function () { }
     )
 
     strategy._oauth2.get = function (url, accessToken, callback) {
@@ -56,20 +56,49 @@ describe('Strategy#userProfile', function () {
     })
   }) // fetched from default endpoint
 
+  describe('fetched without account scope', function () {
+    var strategy = new TypeformStrategy(
+      {
+        clientID: 'ABC123',
+        clientSecret: 'secret'
+      },
+      function () { }
+    )
+
+    strategy._oauth2.get = function (url, accessToken, callback) {
+      callback({ statusCode: 403 })
+    }
+
+    var err, profile
+    before(function (done) {
+      strategy.userProfile('token', function (e, p) {
+        err = e
+        profile = p
+        done()
+      })
+    })
+
+    it('should error', function () {
+      expect(err.name).to.equal('InternalOAuthError')
+      expect(err.message).to.equal('Failed to fetch user profile')
+      expect(err.oauthError.statusCode).to.equal(403)
+    })
+  }) // fetched from default endpoint
+
   describe('error caused by invalid token', function () {
     var strategy = new TypeformStrategy(
       {
         clientID: 'ABC123',
         clientSecret: 'secret',
-        scope: ['accounts:read']
+        scope: [ 'accounts:read' ]
       },
-      function () {}
+      function () { }
     )
 
     strategy._oauth2.get = function (url, accessToken, callback) {
       var body =
-        '{"message":"Bad credentials","documentation_url":"https://developer.github.com/v3"}'
-      callback({ statusCode: 400, data: body })
+        '{"message":"Bad credentials","documentation_url":"https://developer.typeform.com"}'
+      callback({ statusCode: 403, data: body })
     }
 
     var err, profile
@@ -93,9 +122,9 @@ describe('Strategy#userProfile', function () {
       {
         clientID: 'ABC123',
         clientSecret: 'secret',
-        scope: ['accounts:read']
+        scope: [ 'accounts:read' ]
       },
-      function () {}
+      function () { }
     )
 
     strategy._oauth2.get = function (url, accessToken, callback) {
@@ -123,9 +152,9 @@ describe('Strategy#userProfile', function () {
       {
         clientID: 'ABC123',
         clientSecret: 'secret',
-        scope: ['accounts:read']
+        scope: [ 'accounts:read' ]
       },
-      function () {}
+      function () { }
     )
 
     strategy._oauth2.get = function (url, accessToken, callback) {
