@@ -43,9 +43,10 @@ var TypeformStrategy = require('passport-typeform').Strategy;
 passport.use(
   new TypeformStrategy(
     {
-      clientID: TYPEFORM_CLIENT_ID,
-      clientSecret: TYPEFORM_CLIENT_SECRET,
-      callbackURL: 'http://localhost:3000/auth/typeform/callback'
+      clientID: process.env.TYPEFORM_CLIENT_ID,
+      clientSecret: process.env.TYPEFORM_CLIENT_SECRET,
+      callbackURL: 'https://www.website.com/auth/typeform/callback',
+      scope: ['accounts:read'] // accounts:read is needed to fetch the user's profile, together with any other scope that you require
     },
     function(accessToken, refreshToken, profile, cb) {
       User.findOrCreate({ email: profile.email }, function(err, user) {
