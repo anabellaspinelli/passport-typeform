@@ -1,6 +1,6 @@
 {
   "name": "passport-typeform",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Typeform authentication strategy for Passport.",
   "keywords": [
     "passport",
@@ -30,14 +30,14 @@
   ],
   "main": "./lib",
   "dependencies": {
-    "npm": "^6.0.0",
+    "npm": "^6.1.0",
     "passport-oauth2": "1.x.x"
   },
   "devDependencies": {
-    "make-node": "0.3.x",
-    "mocha": "1.x.x",
     "chai": "2.x.x",
     "chai-passport-strategy": "1.x.x",
+    "make-node": "0.3.x",
+    "mocha": "1.x.x",
     "proxyquire": "1.4.x"
   },
   "engines": {
