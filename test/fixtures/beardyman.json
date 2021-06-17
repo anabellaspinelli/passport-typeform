@@ -1,5 +1,7 @@
 {
   "alias": "beardyman",
   "email": "beardy@typeform.com",
-  "language": "en"
+  "language": "en",
+  "user_id": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  "tracking_id": 123456
 }

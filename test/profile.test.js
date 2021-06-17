@@ -21,6 +21,8 @@ describe('Profile.parse', function () {
       expect(profile.email).to.equal('beardy@typeform.com')
       expect(profile.language).to.equal('en')
       expect(profile.alias).to.equal('beardyman')
+      expect(profile.user_id).to.equal('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+      expect(profile.tracking_id).to.equal(123456)
     })
   })
 })
